@@ -1,8 +1,12 @@
 # TRAINING-HAZELCAST-SAMPLE
 TRAINING-HAZELCAST-SAMPLE
+
 HC-SAMPLE-GATEWAY - gateway
+
 HC-SAMPLE-MS-A - microservice A
+
 HC-SAMPLE-MS-B - microservice B
+
 REGISTRY - registry
 
 Deploy Guide:
