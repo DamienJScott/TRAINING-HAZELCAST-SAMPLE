@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Powerbank.
+    -->
+    <changeSet id="20210517124838-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="station_id"
+                                 baseTableName="powerbank"
+                                 constraintName="fk_powerbank_station_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="station"/>
+
+    </changeSet>
+</databaseChangeLog>

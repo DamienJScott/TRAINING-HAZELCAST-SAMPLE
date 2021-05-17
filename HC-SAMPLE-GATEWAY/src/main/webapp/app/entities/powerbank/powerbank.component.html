@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hcSampleApp.powerbank.home.title">Powerbanks</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-powerbank" [routerLink]="['/powerbank/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="hcSampleApp.powerbank.home.createLabel">
+            Create a new Powerbank
+            </span>
+        </button>
+    </h2>
+
+    <hc-alert-error></hc-alert-error>
+
+    <hc-alert></hc-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="powerbanks?.length === 0">
+        <span jhiTranslate="hcSampleApp.powerbank.home.notFound">No powerbanks found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="powerbanks && powerbanks.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="hcSampleApp.powerbank.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="desc"><span jhiTranslate="hcSampleApp.powerbank.desc">Desc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="type"><span jhiTranslate="hcSampleApp.powerbank.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="position"><span jhiTranslate="hcSampleApp.powerbank.position">Position</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isUsing"><span jhiTranslate="hcSampleApp.powerbank.isUsing">Is Using</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="enabled"><span jhiTranslate="hcSampleApp.powerbank.enabled">Enabled</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="stationId"><span jhiTranslate="hcSampleApp.powerbank.station">Station</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let powerbank of powerbanks ;trackBy: trackId">
+                    <td><a [routerLink]="['/powerbank', powerbank.id, 'view']">{{ powerbank.id }}</a></td>
+                    <td>{{ powerbank.name }}</td>
+                    <td>{{ powerbank.desc }}</td>
+                    <td>{{ powerbank.type }}</td>
+                    <td>{{ powerbank.position }}</td>
+                    <td>{{ powerbank.isUsing }}</td>
+                    <td>{{ powerbank.enabled }}</td>
+                    <td>
+                        <div *ngIf="powerbank.stationId">
+                            <a [routerLink]="['/station', powerbank.stationId , 'view']" >{{ powerbank.stationId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/powerbank', powerbank.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/powerbank', powerbank.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(powerbank)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

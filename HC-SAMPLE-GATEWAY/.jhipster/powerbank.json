@@ -1,0 +1,62 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "station",
+      "otherEntityName": "station",
+      "relationshipType": "many-to-one",
+      "otherEntityRelationshipName": "powerbank",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "desc",
+      "fieldType": "String",
+      "fieldValues": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "type",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "position",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 5,
+      "fieldName": "isUsing",
+      "fieldType": "Boolean",
+      "fieldValues": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 6,
+      "fieldName": "enabled",
+      "fieldType": "Boolean",
+      "fieldValues": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "changelogDate": "20210517124838",
+  "dto": "mapstruct",
+  "service": "serviceClass",
+  "pagination": "infinite-scroll",
+  "jpaMetamodelFiltering": true,
+  "searchEngine": false
+}

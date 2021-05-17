@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="photo">
+            <h2><span jhiTranslate="hcSampleApp.photo.detail.title">Photo</span> {{ photo.id }}</h2>
+
+            <hr>
+
+            <hc-alert-error></hc-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hcSampleApp.photo.name">Name</span></dt>
+                <dd>
+                    <span>{{ photo.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.photo.desc">Desc</span></dt>
+                <dd>
+                    <span>{{ photo.desc }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.photo.src">Src</span></dt>
+                <dd>
+                    <span>{{ photo.src }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.photo.isPrivate">Is Private</span></dt>
+                <dd>
+                    <span>{{ photo.isPrivate }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.photo.album">Album</span></dt>
+                <dd>
+                    <div *ngIf="photo.albumId">
+                        <a [routerLink]="['/album', photo.albumId, 'view']">{{ photo.albumId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/photo', photo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

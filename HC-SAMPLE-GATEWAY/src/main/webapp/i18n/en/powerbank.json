@@ -1,0 +1,28 @@
+{
+  "hcSampleApp": {
+    "powerbank": {
+      "home": {
+        "title": "Powerbanks",
+        "createLabel": "Create a new Powerbank",
+        "createOrEditLabel": "Create or edit a Powerbank",
+        "notFound": "No Powerbanks found"
+      },
+      "created": "A new Powerbank is created with identifier {{ param }}",
+      "updated": "A Powerbank is updated with identifier {{ param }}",
+      "deleted": "A Powerbank is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Powerbank {{ id }}?"
+      },
+      "detail": {
+        "title": "Powerbank"
+      },
+      "name": "Name",
+      "desc": "Desc",
+      "type": "Type",
+      "position": "Position",
+      "isUsing": "Is Using",
+      "enabled": "Enabled",
+      "station": "Station"
+    }
+  }
+}

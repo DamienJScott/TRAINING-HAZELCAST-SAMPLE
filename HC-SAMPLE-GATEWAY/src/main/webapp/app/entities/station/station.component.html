@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="hcSampleApp.station.home.title">Stations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-station" [routerLink]="['/station/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="hcSampleApp.station.home.createLabel">
+            Create a new Station
+            </span>
+        </button>
+    </h2>
+
+    <hc-alert-error></hc-alert-error>
+
+    <hc-alert></hc-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="stations?.length === 0">
+        <span jhiTranslate="hcSampleApp.station.home.notFound">No stations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="stations && stations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="hcSampleApp.station.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="desc"><span jhiTranslate="hcSampleApp.station.desc">Desc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="postion"><span jhiTranslate="hcSampleApp.station.postion">Postion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="enabled"><span jhiTranslate="hcSampleApp.station.enabled">Enabled</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let station of stations ;trackBy: trackId">
+                    <td><a [routerLink]="['/station', station.id, 'view']">{{ station.id }}</a></td>
+                    <td>{{ station.name }}</td>
+                    <td>{{ station.desc }}</td>
+                    <td>{{ station.postion }}</td>
+                    <td>{{ station.enabled }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/station', station.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/station', station.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(station)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

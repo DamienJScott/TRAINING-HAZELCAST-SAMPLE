@@ -1,0 +1,26 @@
+{
+  "hcSampleApp": {
+    "station": {
+      "home": {
+        "title": "Stations",
+        "createLabel": "创建新 Station",
+        "createOrEditLabel": "创建或编辑 Station",
+        "notFound": "No Stations found"
+      },
+      "created": "Station {{ param }} 创建成功",
+      "updated": "Station {{ param }} 更新成功",
+      "deleted": "Station {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Station {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Station"
+      },
+      "name": "Name",
+      "desc": "Desc",
+      "postion": "Postion",
+      "enabled": "Enabled",
+      "powerbank": "Powerbank"
+    }
+  }
+}

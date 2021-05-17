@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="powerbank">
+            <h2><span jhiTranslate="hcSampleApp.powerbank.detail.title">Powerbank</span> {{ powerbank.id }}</h2>
+
+            <hr>
+
+            <hc-alert-error></hc-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hcSampleApp.powerbank.name">Name</span></dt>
+                <dd>
+                    <span>{{ powerbank.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.desc">Desc</span></dt>
+                <dd>
+                    <span>{{ powerbank.desc }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.type">Type</span></dt>
+                <dd>
+                    <span>{{ powerbank.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.position">Position</span></dt>
+                <dd>
+                    <span>{{ powerbank.position }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.isUsing">Is Using</span></dt>
+                <dd>
+                    <span>{{ powerbank.isUsing }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ powerbank.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.powerbank.station">Station</span></dt>
+                <dd>
+                    <div *ngIf="powerbank.stationId">
+                        <a [routerLink]="['/station', powerbank.stationId, 'view']">{{ powerbank.stationId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/powerbank', powerbank.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

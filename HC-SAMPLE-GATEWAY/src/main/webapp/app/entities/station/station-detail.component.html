@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="station">
+            <h2><span jhiTranslate="hcSampleApp.station.detail.title">Station</span> {{ station.id }}</h2>
+
+            <hr>
+
+            <hc-alert-error></hc-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="hcSampleApp.station.name">Name</span></dt>
+                <dd>
+                    <span>{{ station.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.station.desc">Desc</span></dt>
+                <dd>
+                    <span>{{ station.desc }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.station.postion">Postion</span></dt>
+                <dd>
+                    <span>{{ station.postion }}</span>
+                </dd>
+                <dt><span jhiTranslate="hcSampleApp.station.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ station.enabled }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/station', station.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

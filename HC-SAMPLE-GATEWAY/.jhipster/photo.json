@@ -1,0 +1,47 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "album",
+      "otherEntityName": "album",
+      "relationshipType": "many-to-one",
+      "otherEntityRelationshipName": "photo",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "desc",
+      "fieldType": "String",
+      "fieldValues": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "src",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "isPrivate",
+      "fieldType": "Boolean",
+      "fieldValues": "Boolean"
+    }
+  ],
+  "changelogDate": "20210517124838",
+  "dto": "mapstruct",
+  "service": "serviceClass",
+  "pagination": "infinite-scroll",
+  "jpaMetamodelFiltering": true,
+  "searchEngine": false
+}

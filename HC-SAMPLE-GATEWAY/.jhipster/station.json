@@ -1,0 +1,48 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "powerbank",
+      "otherEntityName": "powerbank",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "station",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "desc",
+      "fieldType": "String",
+      "fieldValues": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "postion",
+      "fieldType": "String",
+      "fieldValues": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "enabled",
+      "fieldType": "Boolean",
+      "fieldValues": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "changelogDate": "20210517124838",
+  "dto": "mapstruct",
+  "service": "serviceClass",
+  "pagination": "infinite-scroll",
+  "jpaMetamodelFiltering": true,
+  "searchEngine": false
+}
