@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IStation[]>;
 
 @Injectable({ providedIn: 'root' })
 export class StationService {
-  public resourceUrl = SERVER_API_URL + 'api/stations';
+  public resourceUrl = SERVER_API_URL + 'services/hc-sample-ms-b/api/stations';
 
   constructor(protected http: HttpClient) {}
 

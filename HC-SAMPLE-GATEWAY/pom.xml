@@ -896,7 +896,7 @@
         <profile>
             <id>webpack</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <!-- <activeByDefault>true</activeByDefault> -->
             </activation>
             <dependencies>
             </dependencies>

@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IPowerbank[]>;
 
 @Injectable({ providedIn: 'root' })
 export class PowerbankService {
-  public resourceUrl = SERVER_API_URL + 'api/powerbanks';
+  public resourceUrl = SERVER_API_URL + 'services/hc-sample-ms-b/api/powerbanks';
 
   constructor(protected http: HttpClient) {}
 

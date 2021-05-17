@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IAlbum[]>;
 
 @Injectable({ providedIn: 'root' })
 export class AlbumService {
-  public resourceUrl = SERVER_API_URL + 'api/albums';
+  public resourceUrl = SERVER_API_URL + 'services/hc-sample-ms-a/api/albums';
 
   constructor(protected http: HttpClient) {}
 

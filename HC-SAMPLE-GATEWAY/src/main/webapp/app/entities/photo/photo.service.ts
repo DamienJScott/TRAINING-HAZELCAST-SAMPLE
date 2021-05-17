@@ -11,7 +11,7 @@ type EntityArrayResponseType = HttpResponse<IPhoto[]>;
 
 @Injectable({ providedIn: 'root' })
 export class PhotoService {
-  public resourceUrl = SERVER_API_URL + 'api/photos';
+  public resourceUrl = SERVER_API_URL + 'services/hc-sample-ms-a/api/photos';
 
   constructor(protected http: HttpClient) {}
 

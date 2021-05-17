@@ -82,8 +82,7 @@ public class CacheConfiguration {
         if (this.registration == null) {
             log.warn("No discovery service is set up, Hazelcast cannot create a cluster.");
         } else {
-            // The serviceId is by default the application's name,
-            // see the "spring.application.name" standard Spring property
+            // The serviceId is by default the instance's name
             String serviceId = registration.getServiceId();
             log.debug("Configuring Hazelcast clustering for instanceId: {}", serviceId);
             // In development, everything goes through 127.0.0.1, with a different port
