@@ -30,9 +30,15 @@ Deploy Guide:
      5.run command [mvn] to start the back-end.
      6.Enter localhost:9010 in the browser to enter the page.
      
-  HC-SAMPLE-MS-A / HC-SAMPLE-MS-B / HC-SAMPLE-MS-A-INSTANCE-2:
+  HC-SAMPLE-MS-A / HC-SAMPLE-MS-B:
   
      1.run command [mvn clean install -Dmaven.test.skip=true] in root directory.
      2.create the new schema in mysql with any name, then modify the [src\main\resources\config\application-dev.yml] line 47,48,49 to ur scheme name and ur db username&password.
+     3.run command [mvn] to start the back-end.
+
+  HC-SAMPLE-MS-A-INSTANCE-2:
+  
+     1.run command [mvn clean install -Dmaven.test.skip=true] in root directory.
+     2.modify the [src\main\resources\config\application-dev.yml] same like HC-SAMPLE-MS-A.
      3.run command [mvn] to start the back-end.
     
