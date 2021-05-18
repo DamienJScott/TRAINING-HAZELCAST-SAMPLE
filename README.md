@@ -7,6 +7,8 @@ HC-SAMPLE-MS-A - microservice A
 
 HC-SAMPLE-MS-B - microservice B
 
+HC-SAMPLE-MS-A-INSTANCE-2 - the instance 2 of microservice A
+
 REGISTRY - registry
 
 Deploy Guide:
@@ -32,5 +34,11 @@ Deploy Guide:
   
      1.run command [mvn clean install -Dmaven.test.skip=true] in root directory.
      2.create the new schema in mysql with any name, then modify the [src\main\resources\config\application-dev.yml] line 47,48,49 to ur scheme name and ur db username&password.
+     3.run command [mvn] to start the back-end.
+
+  HC-SAMPLE-MS-A-INSTANCE-2:
+  
+     1.run command [mvn clean install -Dmaven.test.skip=true] in root directory.
+     2.modify the [src\main\resources\config\application-dev.yml] same like HC-SAMPLE-MS-A.
      3.run command [mvn] to start the back-end.
     
