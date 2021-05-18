@@ -6,6 +6,7 @@ import javax.persistence.criteria.JoinType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -61,6 +62,7 @@ public class StationQueryService extends QueryService<Station> {
      * @return the matching entities.
      */
     @Transactional(readOnly = true)
+    @Cacheable(cacheNames = "allStations")
     public Page<StationDTO> findByCriteria(StationCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
         final Specification<Station> specification = createSpecification(criteria);
