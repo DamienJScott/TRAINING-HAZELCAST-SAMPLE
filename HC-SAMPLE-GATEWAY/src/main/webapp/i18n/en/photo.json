@@ -1,6 +1,7 @@
 {
   "hcSampleApp": {
     "photo": {
+      "view": "View Photos",
       "home": {
         "title": "Photos",
         "createLabel": "Create a new Photo",
@@ -16,11 +17,16 @@
       "detail": {
         "title": "Photo"
       },
+      "searchCondition": "Search Condition",
       "name": "Name",
       "desc": "Desc",
       "src": "Src",
       "isPrivate": "Is Private",
-      "album": "Album"
+      "album": "Album",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "LastModified By",
+      "lastModifiedDate": "LastModified Date"
     }
   }
 }

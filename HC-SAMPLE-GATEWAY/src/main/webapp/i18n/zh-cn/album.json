@@ -2,7 +2,7 @@
   "hcSampleApp": {
     "album": {
       "home": {
-        "title": "Albums",
+        "title": "相册",
         "createLabel": "创建新 Album",
         "createOrEditLabel": "创建或编辑 Album",
         "notFound": "No Albums found"
@@ -13,13 +13,17 @@
       "delete": {
         "question": "你确定要删除 Album {{ id }} 吗？"
       },
-      "detail": {
-        "title": "Album"
+      "details": {
+        "title": "相册"
       },
-      "name": "Name",
-      "desc": "Desc",
-      "detail": "Detail",
-      "photo": "Photo"
+      "name": "名称",
+      "desc": "描述",
+      "detail": "详情",
+      "photo": "相片",
+      "createdBy":"创建者",
+      "createdDate":"创建时间",
+      "lastModifiedBy":"修改者",
+      "lastModifiedDate":"修改时间"
     }
   }
 }

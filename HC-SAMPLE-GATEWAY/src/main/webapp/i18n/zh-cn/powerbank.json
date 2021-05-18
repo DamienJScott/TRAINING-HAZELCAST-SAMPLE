@@ -2,27 +2,27 @@
   "hcSampleApp": {
     "powerbank": {
       "home": {
-        "title": "Powerbanks",
-        "createLabel": "创建新 Powerbank",
-        "createOrEditLabel": "创建或编辑 Powerbank",
-        "notFound": "No Powerbanks found"
+        "title": "充电宝",
+        "createLabel": "创建新 充电宝",
+        "createOrEditLabel": "创建或编辑 充电宝",
+        "notFound": "没有找到任何数据"
       },
-      "created": "Powerbank {{ param }} 创建成功",
-      "updated": "Powerbank {{ param }} 更新成功",
-      "deleted": "Powerbank {{ param }} 删除成功",
+      "created": "充电宝 {{ param }} 创建成功",
+      "updated": "充电宝 {{ param }} 更新成功",
+      "deleted": "充电宝 {{ param }} 删除成功",
       "delete": {
-        "question": "你确定要删除 Powerbank {{ id }} 吗？"
+        "question": "你确定要删除 充电宝 {{ id }} 吗？"
       },
       "detail": {
-        "title": "Powerbank"
+        "title": "充电宝"
       },
-      "name": "Name",
-      "desc": "Desc",
-      "type": "Type",
-      "position": "Position",
-      "isUsing": "Is Using",
-      "enabled": "Enabled",
-      "station": "Station"
+      "name": "名称",
+      "desc": "详情",
+      "type": "类型",
+      "position": "位置",
+      "isUsing": "正在使用",
+      "enabled": "是否启用",
+      "station": "充电站"
     }
   }
 }

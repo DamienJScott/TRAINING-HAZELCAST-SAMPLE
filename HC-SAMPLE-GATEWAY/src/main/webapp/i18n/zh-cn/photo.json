@@ -1,26 +1,32 @@
 {
   "hcSampleApp": {
     "photo": {
+      "view": "阅览相片",
       "home": {
-        "title": "Photos",
-        "createLabel": "创建新 Photo",
-        "createOrEditLabel": "创建或编辑 Photo",
+        "title": "相片",
+        "createLabel": "创建新 相片",
+        "createOrEditLabel": "创建或编辑 相片",
         "notFound": "No Photos found"
       },
-      "created": "Photo {{ param }} 创建成功",
-      "updated": "Photo {{ param }} 更新成功",
-      "deleted": "Photo {{ param }} 删除成功",
+      "created": "相片 {{ param }} 创建成功",
+      "updated": "相片 {{ param }} 更新成功",
+      "deleted": "相片 {{ param }} 删除成功",
       "delete": {
-        "question": "你确定要删除 Photo {{ id }} 吗？"
+        "question": "你确定要删除 相片 {{ id }} 吗？"
       },
       "detail": {
-        "title": "Photo"
+        "title": "相片"
       },
-      "name": "Name",
-      "desc": "Desc",
-      "src": "Src",
-      "isPrivate": "Is Private",
-      "album": "Album"
+      "searchCondition": "搜索条件",
+      "name": "名称",
+      "desc": "描述",
+      "src": "地址",
+      "isPrivate": "是否私有",
+      "album": "相册",
+      "createdBy": "创建者",
+      "createdDate": "创建时间",
+      "lastModifiedBy": "修改者",
+      "lastModifiedDate": "修改时间"
     }
   }
 }

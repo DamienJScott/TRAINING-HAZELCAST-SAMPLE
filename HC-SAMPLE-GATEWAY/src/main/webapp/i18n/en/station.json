@@ -1,6 +1,7 @@
 {
   "hcSampleApp": {
     "station": {
+      "searchCondition": "Search Condition",
       "home": {
         "title": "Stations",
         "createLabel": "Create a new Station",
@@ -18,7 +19,7 @@
       },
       "name": "Name",
       "desc": "Desc",
-      "postion": "Postion",
+      "postion": "Position",
       "enabled": "Enabled",
       "powerbank": "Powerbank"
     }

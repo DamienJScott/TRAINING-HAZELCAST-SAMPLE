@@ -9,10 +9,13 @@ import { IPowerbank } from 'app/shared/model/powerbank.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { PowerbankService } from './powerbank.service';
 import { PowerbankDeleteDialogComponent } from './powerbank-delete-dialog.component';
+import { FormBuilder } from '@angular/forms';
+import { ENABLED } from '../station/station.data';
 
 @Component({
   selector: 'hc-powerbank',
   templateUrl: './powerbank.component.html',
+  styleUrls: ['./powerbank.component.scss']
 })
 export class PowerbankComponent implements OnInit, OnDestroy {
   powerbanks: IPowerbank[];
@@ -22,14 +25,26 @@ export class PowerbankComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  search: any;
+  enableds: any[];
+
+  searchForm = this.fb.group({
+    name: [],
+    desc: [],
+    position: [],
+    enabled: [],
+  });
 
   constructor(
     protected powerbankService: PowerbankService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected fb: FormBuilder
   ) {
     this.powerbanks = [];
+    this.search = {};
+    this.enableds = ENABLED;
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -40,13 +55,33 @@ export class PowerbankComponent implements OnInit, OnDestroy {
   }
 
   loadAll(): void {
+    this.search['page'] = this.page;
+    this.search['size'] = this.itemsPerPage;
+    this.search['sort'] = this.sort();
     this.powerbankService
-      .query({
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .query(this.search)
       .subscribe((res: HttpResponse<IPowerbank[]>) => this.paginatePowerbanks(res.body, res.headers));
+  }
+
+  resetCondition(): void {
+    this.searchForm.reset();
+    this.search = {};
+    this.reset();
+  }
+
+  searching(): void {
+    this.search = Object.assign({}, this.searchForm.value);
+    Object.keys(this.search).forEach(key => {
+      if (this.search[key] || this.search[key] === false || this.search[key] === 0) {
+        if (key === 'enabled') {
+          this.search[key + '.equals'] = this.search[key];
+        } else {
+          this.search[key + '.contains'] = this.search[key];
+        }
+      }
+      Reflect.deleteProperty(this.search, key);
+    });
+    this.reset();
   }
 
   reset(): void {

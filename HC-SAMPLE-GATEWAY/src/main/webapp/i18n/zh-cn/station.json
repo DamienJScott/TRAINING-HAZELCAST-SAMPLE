@@ -1,26 +1,27 @@
 {
   "hcSampleApp": {
     "station": {
+      "searchCondition": "搜索条件",
       "home": {
-        "title": "Stations",
-        "createLabel": "创建新 Station",
-        "createOrEditLabel": "创建或编辑 Station",
-        "notFound": "No Stations found"
+        "title": "充电站",
+        "createLabel": "创建新 充电站",
+        "createOrEditLabel": "创建或编辑 充电站",
+        "notFound": "没有找到任何数据"
       },
-      "created": "Station {{ param }} 创建成功",
-      "updated": "Station {{ param }} 更新成功",
-      "deleted": "Station {{ param }} 删除成功",
+      "created": "充电站 {{ param }} 创建成功",
+      "updated": "充电站 {{ param }} 更新成功",
+      "deleted": "充电站 {{ param }} 删除成功",
       "delete": {
-        "question": "你确定要删除 Station {{ id }} 吗？"
+        "question": "你确定要删除 充电站 {{ id }} 吗？"
       },
       "detail": {
-        "title": "Station"
+        "title": "充电站"
       },
-      "name": "Name",
-      "desc": "Desc",
-      "postion": "Postion",
-      "enabled": "Enabled",
-      "powerbank": "Powerbank"
+      "name": "名称",
+      "desc": "详情",
+      "postion": "位置",
+      "enabled": "是否启用",
+      "powerbank": "充电宝"
     }
   }
 }

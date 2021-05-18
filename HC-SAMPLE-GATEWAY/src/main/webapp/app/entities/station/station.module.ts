@@ -7,9 +7,13 @@ import { StationDetailComponent } from './station-detail.component';
 import { StationUpdateComponent } from './station-update.component';
 import { StationDeleteDialogComponent } from './station-delete-dialog.component';
 import { stationRoute } from './station.route';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
-  imports: [HcSampleSharedModule, RouterModule.forChild(stationRoute)],
+  imports: [HcSampleSharedModule,CardModule, InputTextModule, ButtonModule, DropdownModule, RouterModule.forChild(stationRoute)],
   declarations: [StationComponent, StationDetailComponent, StationUpdateComponent, StationDeleteDialogComponent],
   entryComponents: [StationDeleteDialogComponent],
 })

@@ -13,7 +13,36 @@
     <hc-alert-error></hc-alert-error>
 
     <hc-alert></hc-alert>
-
+    <p-card styleClass="p-shadow-10 p-mt-6 p-mb-6 p-p-2">
+        <ng-template pTemplate="header">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h2 class="p-text-bold p-m-3 " jhiTranslate="hcSampleApp.photo.searchCondition">Search
+                    Condition
+                </h2>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-replay" (click)="resetCondition()"
+                        class="p-button-rounded p-mr-6 p-button-danger p-button-outlined"></button>
+                    <button pButton pRipple type="button" icon="pi pi-search" (click)="searching()"
+                        class="p-button-rounded p-mr-6 p-button-info p-button-outlined"></button>
+                </div>
+            </div>
+            <hr id="cutLine" class="p-d-none p-d-md-block">
+        </ng-template>
+        <form name="searchForm" role="form" novalidate [formGroup]="searchForm">
+            <div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col">
+                        <h5 jhiTranslate="hcSampleApp.photo.name">Name</h5>
+                        <input type="text" pInputText id="name" name="name" formControlName="name">
+                    </div>
+                    <div class="p-field p-col">
+                        <h5 jhiTranslate="hcSampleApp.photo.desc">desc</h5>
+                        <input type="text" pInputText id="desc" name="desc" formControlName="desc">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-card>
     <div class="alert alert-warning" id="no-result" *ngIf="photos?.length === 0">
         <span jhiTranslate="hcSampleApp.photo.home.notFound">No photos found</span>
     </div>

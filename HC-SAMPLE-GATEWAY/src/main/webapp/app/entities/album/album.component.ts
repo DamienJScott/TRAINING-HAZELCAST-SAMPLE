@@ -9,10 +9,12 @@ import { IAlbum } from 'app/shared/model/album.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { AlbumService } from './album.service';
 import { AlbumDeleteDialogComponent } from './album-delete-dialog.component';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'hc-album',
   templateUrl: './album.component.html',
+  styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit, OnDestroy {
   albums: IAlbum[];
@@ -22,14 +24,22 @@ export class AlbumComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  search: any;
+
+  searchForm = this.fb.group({
+    name: [],
+    desc: [],
+  });
 
   constructor(
     protected albumService: AlbumService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    private fb: FormBuilder
   ) {
     this.albums = [];
+    this.search = {};
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -39,13 +49,30 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.ascending = true;
   }
 
+  
+  resetCondition(): void {
+    this.searchForm.reset();
+    this.search = {};
+    this.reset();
+  }
+
+  searching(): void {
+    this.search = Object.assign({}, this.searchForm.value);
+    Object.keys(this.search).forEach(key => {
+      if (this.search[key]) {
+        this.search[key + '.contains'] = this.search[key];
+      }
+      Reflect.deleteProperty(this.search, key);
+    });
+    this.reset();
+  }
+
   loadAll(): void {
+    this.search['page'] = this.page;
+    this.search['size'] = this.itemsPerPage;
+    this.search['sort'] = this.sort();
     this.albumService
-      .query({
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .query(this.search)
       .subscribe((res: HttpResponse<IAlbum[]>) => this.paginateAlbums(res.body, res.headers));
   }
 

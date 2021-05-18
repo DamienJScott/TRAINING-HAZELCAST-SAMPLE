@@ -9,10 +9,12 @@ import { IPhoto } from 'app/shared/model/photo.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { PhotoService } from './photo.service';
 import { PhotoDeleteDialogComponent } from './photo-delete-dialog.component';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'hc-photo',
   templateUrl: './photo.component.html',
+  styleUrls:['./photo.component.scss']
 })
 export class PhotoComponent implements OnInit, OnDestroy {
   photos: IPhoto[];
@@ -22,14 +24,22 @@ export class PhotoComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  search: any;
+
+  searchForm = this.fb.group({
+    name: [],
+    desc: [],
+  });
 
   constructor(
     protected photoService: PhotoService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected fb: FormBuilder
   ) {
     this.photos = [];
+    this.search = {};
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -39,13 +49,31 @@ export class PhotoComponent implements OnInit, OnDestroy {
     this.ascending = true;
   }
 
+  resetCondition(): void {
+    this.searchForm.reset();
+    this.search = {};
+    this.reset();
+  }
+
+
+  searching(): void {
+    this.search = Object.assign({}, this.searchForm.value);
+    Object.keys(this.search).forEach(key => {
+      if (this.search[key]) {
+        this.search[key + '.contains'] = this.search[key];
+      }
+      Reflect.deleteProperty(this.search, key);
+    });
+    this.reset();
+  }
+
+
   loadAll(): void {
+    this.search['page'] = this.page;
+    this.search['size'] = this.itemsPerPage;
+    this.search['sort'] = this.sort();
     this.photoService
-      .query({
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .query(this.search)
       .subscribe((res: HttpResponse<IPhoto[]>) => this.paginatePhotos(res.body, res.headers));
   }
 

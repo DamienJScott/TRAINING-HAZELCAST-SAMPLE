@@ -9,10 +9,13 @@ import { IStation } from 'app/shared/model/station.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { StationService } from './station.service';
 import { StationDeleteDialogComponent } from './station-delete-dialog.component';
+import { FormBuilder } from '@angular/forms';
+import { ENABLED } from './station.data';
 
 @Component({
   selector: 'hc-station',
   templateUrl: './station.component.html',
+  styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit, OnDestroy {
   stations: IStation[];
@@ -22,14 +25,26 @@ export class StationComponent implements OnInit, OnDestroy {
   page: number;
   predicate: string;
   ascending: boolean;
+  search: any;
+  enableds: any[];
+
+  searchForm = this.fb.group({
+    name: [],
+    desc: [],
+    postion: [],
+    enabled: [],
+  });
 
   constructor(
     protected stationService: StationService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    protected fb: FormBuilder
   ) {
     this.stations = [];
+    this.search = {};
+    this.enableds = ENABLED;
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -39,13 +54,33 @@ export class StationComponent implements OnInit, OnDestroy {
     this.ascending = true;
   }
 
+  resetCondition(): void {
+    this.searchForm.reset();
+    this.search = {};
+    this.reset();
+  }
+
+  searching(): void {
+    this.search = Object.assign({}, this.searchForm.value);
+    Object.keys(this.search).forEach(key => {
+      if (this.search[key] || this.search[key] === false || this.search[key] === 0) {
+        if (key === 'enabled') {
+          this.search[key + '.equals'] = this.search[key];
+        } else {
+          this.search[key + '.contains'] = this.search[key];
+        }
+      }
+      Reflect.deleteProperty(this.search, key);
+    });
+    this.reset();
+  }
+
   loadAll(): void {
+    this.search['page'] = this.page;
+    this.search['size'] = this.itemsPerPage;
+    this.search['sort'] = this.sort();
     this.stationService
-      .query({
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .query(this.search)
       .subscribe((res: HttpResponse<IStation[]>) => this.paginateStations(res.body, res.headers));
   }
 

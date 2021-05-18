@@ -13,13 +13,18 @@
       "delete": {
         "question": "Are you sure you want to delete Album {{ id }}?"
       },
-      "detail": {
+      "details": {
         "title": "Album"
       },
       "name": "Name",
       "desc": "Desc",
       "detail": "Detail",
-      "photo": "Photo"
+      "photo": "Photo",
+      "createdBy":"Created By",
+      "createdDate":"Created Date",
+      "lastModifiedBy":"LastModified By",
+      "lastModifiedDate":"LastModified Date"
+
     }
   }
 }
