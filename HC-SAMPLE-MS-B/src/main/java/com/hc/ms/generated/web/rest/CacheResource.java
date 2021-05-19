@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import com.hc.ms.generated.service.dto.StationDTO;
 
 import org.slf4j.Logger;
@@ -52,6 +51,7 @@ public class CacheResource {
 
     /**
      * CachePut Testing
+     * 
      * @param id
      * @return
      */
@@ -179,6 +179,19 @@ public class CacheResource {
     @CacheEvict(cacheNames = "byId", allEntries = true)
     public ResponseEntity<Void> evictErrorFalse() throws Exception {
         throw new Exception();
+    }
+
+    @GetMapping("/evict/combine/{id}")
+    @Cacheable(cacheNames = "combine")
+    @CachePut(cacheNames = "combine", condition = "#p0==1")
+    @CacheEvict(cacheNames = "combine", condition = "#p0==2",allEntries = true)
+    public String testcombine(@PathVariable Long id) {
+        Date date = new Date();
+        log.debug(
+                "\n*******************************\n\n Testing combine cache, id : {} , data create time : {} \n \n*******************************\n",
+                id, date);
+
+        return "{'Success':" + date + "}";
     }
 
 }
