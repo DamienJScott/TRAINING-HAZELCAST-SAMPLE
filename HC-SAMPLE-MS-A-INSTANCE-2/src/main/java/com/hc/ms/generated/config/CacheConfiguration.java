@@ -79,6 +79,7 @@ public class CacheConfiguration {
         Config config = new Config();
         config.setInstanceName("HC-SAMPLE-MS-A");
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        // config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(true).setMulticastPort(5701);
         if (this.registration == null) {
             log.warn("No discovery service is set up, Hazelcast cannot create a cluster.");
         } else {

@@ -78,51 +78,21 @@ public class CacheConfiguration {
         }
         Config config = new Config();
         config.setInstanceName("HC-SAMPLE");
-        config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
-        if (this.registration == null) {
-            log.warn("No discovery service is set up, Hazelcast cannot create a cluster.");
-        } else {
-            // The serviceId is by default the instance's name
-            String serviceId = registration.getServiceId();
-            log.debug("Configuring Hazelcast clustering for instanceId: {}", serviceId);
-            // In development, everything goes through 127.0.0.1, with a different port
-            if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT))) {
-                log.debug("Application is running with the \"dev\" profile, Hazelcast " +
-                          "cluster will only work with localhost instances");
+        System.setProperty("hazelcast.local.localAddress", "127.0.0.1");
+        config.getNetworkConfig().setPort(5701);
+        config.getNetworkConfig().setPortAutoIncrement(true);
 
-                System.setProperty("hazelcast.local.localAddress", "127.0.0.1");
-                config.getNetworkConfig().setPort(serverProperties.getPort() + 5701);
-                config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
-                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
-                    String clusterMember = "127.0.0.1:" + (instance.getPort() + 5701);
-                    log.debug("Adding Hazelcast (dev) cluster member {}", clusterMember);
-                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
-                }
-            } else { // Production configuration, one host per instance all using port 5701
-                config.getNetworkConfig().setPort(5701);
-                config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(true);
-                for (ServiceInstance instance : discoveryClient.getInstances(serviceId)) {
-                    String clusterMember = instance.getHost() + ":5701";
-                    log.debug("Adding Hazelcast (prod) cluster member {}", clusterMember);
-                    config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
-                }
-            }
-        }
+        config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(false);
+        config.getNetworkConfig().getJoin().getAwsConfig().setEnabled(false);
+        
         config.getMapConfigs().put("default", initializeDefaultMapConfig(jHipsterProperties));
 
-        // Full reference is available at: https://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
-        config.setManagementCenterConfig(initializeDefaultManagementCenterConfig(jHipsterProperties));
+        config.setManagementCenterConfig(new ManagementCenterConfig());
         config.getMapConfigs().put("com.hc.generated.domain.*", initializeDomainMapConfig(jHipsterProperties));
         return Hazelcast.newHazelcastInstance(config);
     }
 
-    private ManagementCenterConfig initializeDefaultManagementCenterConfig(JHipsterProperties jHipsterProperties) {
-        ManagementCenterConfig managementCenterConfig = new ManagementCenterConfig();
-        managementCenterConfig.setEnabled(jHipsterProperties.getCache().getHazelcast().getManagementCenter().isEnabled());
-        managementCenterConfig.setUrl(jHipsterProperties.getCache().getHazelcast().getManagementCenter().getUrl());
-        managementCenterConfig.setUpdateInterval(jHipsterProperties.getCache().getHazelcast().getManagementCenter().getUpdateInterval());
-        return managementCenterConfig;
-    }
 
     private MapConfig initializeDefaultMapConfig(JHipsterProperties jHipsterProperties) {
         MapConfig mapConfig = new MapConfig();

@@ -79,6 +79,7 @@ public class CacheConfiguration {
         Config config = new Config();
         config.setInstanceName("HC-SAMPLE-MS-B");
         config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        // config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(true).setMulticastPort(5701);
         if (this.registration == null) {
             log.warn("No discovery service is set up, Hazelcast cannot create a cluster.");
         } else {
@@ -107,7 +108,7 @@ public class CacheConfiguration {
                     config.getNetworkConfig().getJoin().getTcpIpConfig().addMember(clusterMember);
                 }
             }
-        }
+        } 
         config.getMapConfigs().put("default", initializeDefaultMapConfig(jHipsterProperties));
 
         // Full reference is available at: https://docs.hazelcast.org/docs/management-center/3.9/manual/html/Deploying_and_Starting.html
