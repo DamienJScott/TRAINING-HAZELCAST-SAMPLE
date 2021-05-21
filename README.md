@@ -42,3 +42,5 @@ Deploy Guide:
      2.modify the [src\main\resources\config\application-dev.yml] same like HC-SAMPLE-MS-A.
      3.run command [mvn] to start the back-end.
     
+
+Hazelcast Management Center - download: https://hazelcast.org/imdg/download/#management-center (best to use v3.12.9)
